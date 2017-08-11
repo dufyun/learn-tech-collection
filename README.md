@@ -16,7 +16,7 @@
 详情使用请参考：<a href="http://blog.csdn.net/u010648555/article/details/70139541" target="_blank">Redisson分布式锁的简单使用</a>
 
 
-<h4>4.springwebscoket项目，	使用Spring websocket实现搭建websocket，快速学习</h4>
+<h4>4.springwebscoket项目，	使用Spring websocket实现搭建websocket，快速学习 。使用JDK版本1.6+</h4>
 详情使用请参考：<a href="" target="_blank">暂未更新博客</a>
 
 ----------
