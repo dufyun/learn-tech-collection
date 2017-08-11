@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context 
+           http://www.springframework.org/schema/context/spring-context.xsd
+           http://www.springframework.org/schema/aop 
+           http://www.springframework.org/schema/aop/spring-aop.xsd
+           http://www.springframework.org/schema/mvc      
+           http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+   
+       <!-- 打开自动扫描 -->
+   <context:component-scan base-package="com.dufyun.springmvc.web.controller"/>
+
+  <!-- 主要作用于@Controller,激活该模式,下面是一种简写形式,完全可以手动配置替代这种简写形式,它会自动注册DefaultAnnotationHandlerMapping与AnnotationMethodHandlerAdapter，是spring 
+		MVC为@Controllers分发请求所必须的 -->
+  <mvc:annotation-driven/>
+  
+  <!-- 静态资源映射 -->
+  <!-- location：制定静态文件的位置   mapping ： 映射到ResourceHttpRequestHandler-->
+   	<mvc:default-servlet-handler />
+	<mvc:resources mapping="/static/**" location="/WEB-INF/static/" />
+  
+  <!-- jsp页面解析器,当Controller返回XXX字符串时,先通过拦截器,然后该类就会在/WEB-INF/jsp/目录下,查找XXX.jsp文件 -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="suffix" value=".jsp" />
+	</bean> 
+        
+ </beans>

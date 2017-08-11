@@ -1,0 +1,7 @@
+访问地址如下：
+http://localhost:8520/dufyun_SpringMVC/toImg
+
+
+附件：图文验证码模块.rar
+这个是网上下载的，出处忘记了，应该是开源网站下载的！
+也可以使用！
