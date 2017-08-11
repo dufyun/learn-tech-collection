@@ -10,6 +10,8 @@
     String path = request.getContextPath();
     String basePath = request.getServerName() + ":"
             + request.getServerPort();
+    String finalPath = "http://" + basePath + path;
+    out.print("finalPath = " + finalPath);
 %>
 <html>
 <head>
@@ -29,13 +31,13 @@
         var projectName = "springwebscoket";
         var baseUrl= getBaseUrl();
         var stompClient = null;
-
+        console.log("baseUrl = " + baseUrl);
         //this line.
         function connect() {
             console.log('Connected: ----------------------------------');
             var userid = document.getElementById('name').value;
 
-            var socket = new SockJS("http://localhost:9081/springwebscoket/chat");
+            var socket = new SockJS(baseUrl + projectName +"/chat");
             console.log("=-="+ socket);
             stompClient = Stomp.over(socket);
 
