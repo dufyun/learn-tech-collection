@@ -17,7 +17,10 @@
 
 
 <h4>4.springwebscoket项目，	使用Spring websocket实现搭建websocket，快速学习 。使用JDK版本1.6+</h4>
-详情使用请参考：<a href="" target="_blank">暂未更新博客</a>
+详情使用请参考：<a href="http://blog.csdn.net/u010648555/article/details/77141170" target="_blank">基于Spring WebSocket 和STOMP实现简单的聊天功能</a>
+<a href="http://www.cnblogs.com/aflyun/p/7352830.html" target="_blank">基于Spring WebSocket 和STOMP实现简单的聊天功能</a>
+
+
 
 ----------
 <font size='12' color='green'>持续更新.....</font>
