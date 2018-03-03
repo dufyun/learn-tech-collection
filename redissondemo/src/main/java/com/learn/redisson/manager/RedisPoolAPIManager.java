@@ -1,11 +1,11 @@
 package com.learn.redisson.manager;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPoolConfig;
 import redis.clients.jedis.JedisSentinelPool;
-
-import java.util.HashSet;
-import java.util.Set;
 
 public class RedisPoolAPIManager {
 
@@ -24,12 +24,13 @@ public class RedisPoolAPIManager {
 			// 在borrow一个jedis实例时，是否提前进行validate操作；如果为true，则得到的jedis实例均是可用的；
 			config.setTestOnBorrow(Boolean.valueOf(true));
 
+			// master名称和配置文件中配置的要一样
 			String master = "mymaster";
-			String address = "127.0.0.1:26379,127.0.0.1:26479,127.0.0.1:26579";
+			//setinel客户端提供了master自动发现功能
 			Set<String> sentinels = new HashSet<String>();
-			for (String addr : address.split(",")) {
-				sentinels.add(addr);
-			}
+			sentinels.add("127.0.0.1:26379");
+			sentinels.add("127.0.0.1:26380");
+			sentinels.add("127.0.0.1:26381");
 
 			pool = new JedisSentinelPool(master, sentinels, config);
 		} catch (Exception e) {
@@ -70,5 +71,9 @@ public class RedisPoolAPIManager {
 		JedisSentinelPool pool = RedisPoolAPIManager.getPool();
 		Jedis redis = pool.getResource();
 		System.out.println("redis = " + redis);
+
+		if(redis != null){
+			returnResource(pool,redis);
+		}
 	}
 }
