@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+    <context:annotation-config/>
+
+
+    <!--创建一个Spring Bean的名称springSessionRepositoryFilter实现过滤器。
+    筛选器负责将HttpSession实现替换为Spring会话支持。在这个实例中，Spring会话得到了Redis的支持。-->
+    <bean class="org.springframework.session.data.redis.config.annotation.web.http.RedisHttpSessionConfiguration"/>
+    <!--创建了一个RedisConnectionFactory，它将Spring会话连接到Redis服务器。我们配置连接到默认端口(6379)上的本地主机！-->
+    <bean class="org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory"/>
+
+</beans>
