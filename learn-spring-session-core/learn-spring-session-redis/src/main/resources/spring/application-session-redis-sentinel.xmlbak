@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+    <!-- 打开注解方式 -->
+    <context:annotation-config/>
+
+    <!--可以將redis配置写入配置文件中-->
+    <context:property-placeholder location="classpath:redis.properties"/>
+
+    <!--创建一个Spring Bean的名称springSessionRepositoryFilter实现过滤器。
+    筛选器负责将HttpSession实现替换为Spring会话支持。在这个实例中，Spring会话得到了Redis的支持。-->
+    <bean class="org.springframework.session.data.redis.config.annotation.web.http.RedisHttpSessionConfiguration"/>
+
+    <!--创建了一个RedisConnectionFactory，它将Spring会话连接到Redis服务器。我们配置连接到默认端口(6379)上的本地主机！-->
+
+    <!-- //单机Redis
+    <bean class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
+        <constructor-arg ref="jedisPoolConfig"/>
+        <property name="port" value="6379"/>
+        <property name="hostName" value="localhost"/>
+    </bean>
+    -->
+    <!--集群Redis-->
+    <bean id="jedisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
+        <!--Redis-Sentinel-->
+        <constructor-arg index="0" ref="redisSentinelConfig"/>
+
+        <!--配置Redis连接池 ，测试使用可以不配置，使用默认就行！-->
+        <constructor-arg index="1" ref="jedisPoolConfig"/>
+
+    </bean>
+
+    <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+
+        <!--最大连接数, 默认8个-->
+        <property name="maxTotal" value="${redis.maxTotal}"/>
+
+        <!--最大空闲连接数, 默认8-->
+        <property name="maxIdle" value="${redis.maxIdle}"/>
+
+        <!--最小空闲连接数, 默认0-->
+        <property name="minIdle" value="${redis.minIdle}"/>
+
+        <!--在获取连接的时候检查有效性, 默认false-->
+        <property name="testOnBorrow" value="${redis.testOnBorrow}"/>
+
+        <!--在空闲时检查有效性, 默认false, 新版jedis 不支持这个参数了-->
+        <property name="testOnReturn" value="${redis.testOnReturn}"/>
+
+        <!--获取连接时的最大等待毫秒数(如果设置为阻塞时BlockWhenExhausted),如果超时就抛异常, 小于零:阻塞不确定的时间,  默认-1-->
+        <property name="maxWaitMillis" value="${redis.maxWaitMillis}"/>
+
+        <!--连接耗尽时是否阻塞, false报异常,ture阻塞直到超时, 默认true-->
+        <property name="blockWhenExhausted" value="${redis.blockWhenExhausted}"/>
+
+        <!--设置的逐出策略类名, 默认DefaultEvictionPolicy(当连接超过最大空闲时间,或连接数超过最大空闲连接数)-->
+        <property name="evictionPolicyClassName" value="${redis.evictionPolicyClassName}"/>
+
+        <!--还有很多配置参数，参数的调优还没接触过，后面有机会结合项目整理整理-->
+    </bean>
+
+    <!--哨兵模式配置-->
+    <bean id="redisSentinelConfig" class="org.springframework.data.redis.connection.RedisSentinelConfiguration">
+
+        <property name="master">
+            <bean class="org.springframework.data.redis.connection.RedisNode">
+                <property name="name" value="mymaster"></property>
+            </bean>
+        </property>
+
+        <property name="sentinels">
+            <set>
+                <bean  id="sentinel1" class="org.springframework.data.redis.connection.RedisNode">
+                    <constructor-arg name="host" value="${redis.sentinel1.host}"/>
+                    <constructor-arg name="port" value="${redis.sentinel1.port}"/>
+                </bean>
+                <bean  id="sentinel2" class="org.springframework.data.redis.connection.RedisNode" >
+                    <constructor-arg name="host" value="${redis.sentinel2.host}"/>
+                    <constructor-arg name="port" value="${redis.sentinel2.port}"/>
+                </bean>
+                <bean  id="sentinel3" class="org.springframework.data.redis.connection.RedisNode">
+                    <constructor-arg name="host" value="${redis.sentinel3.host}"/>
+                    <constructor-arg name="port" value="${redis.sentinel3.port}"/>
+                </bean>
+            </set>
+        </property>
+    </bean>
+
+</beans>
