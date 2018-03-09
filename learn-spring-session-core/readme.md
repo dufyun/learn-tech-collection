@@ -31,6 +31,19 @@ Spring-session ：https://docs.spring.io/spring-session/docs/
 [spring-session实现分布式集群session的共享](https://www.cnblogs.com/youzhibing/p/7348337.html)
 
 
+
+
+
+### [【第三篇】Spring-Session实现Session共享实现原理以及源码解析](http://blog.csdn.net/u010648555/article/details/79491988) 
+
+（1）SessionRepositoryFilter和JedisConnectionFactory注册过程
+（2）SessionRepositoryFilter添加到FIlterChain
+（3）SessionRepositoryFilter拦截过程
+（4）SessionRepository保存session数据
+
+
+
+```
 Redis连接工厂
 
 JedisConnectionFactory  
@@ -38,14 +51,18 @@ JredisConnectionFactory
 LettuceConnectionFactory  
 SrpConnectionFactory
 
-### 后续
-
-### [【第三篇】Spring-Session实现Session共享实现原理以及源码解析]()【更新中...请期待...】  
+```
 
 
+参考博文
 
+[【Spring】Spring Session的简单搭建与源码阅读](https://www.cnblogs.com/nick-huang/p/6986824.html#my_inner_label13)
 
+[利用spring session解决共享Session问题](http://blog.csdn.net/patrickyoung6625/article/details/45694157)
 
+[Spring Session解决分布式Session问题的实现原理](http://blog.csdn.net/xlgen157387/article/details/60321984)
+
+[spring-session简介、使用及实现原理](http://blog.csdn.net/wojiaolinaaa/article/details/62424642)
 
 
 
