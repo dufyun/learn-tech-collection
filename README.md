@@ -12,7 +12,7 @@
 详情使用请参考：<a href="http://blog.csdn.net/u010648555/article/details/56021211" target="_blank">SSM框架——Spring+SpringMVC+Mybatis的搭建教程</a>
 
 ----------
-<h4>3.redisson项目，	使用Redisson搭建简单的分布式锁项目</h4>
+<h4>3.redisson项目，使用Redisson搭建简单的分布式锁项目</h4>
 详情使用请参考：<a href="http://blog.csdn.net/u010648555/article/details/70139541" target="_blank">Redisson分布式锁的简单使用</a>
 
 
@@ -27,9 +27,13 @@
 
 [【第一篇】Spring-Session实现Session共享入门教程](http://blog.csdn.net/u010648555/article/details/79459953)
 
-[【第二篇】Spring-Session实现Session共享Redis集群方式配置教程]()【更新中...请期待...】
+[【第二篇】Spring-Session实现Session共享Redis集群方式配置教程](http://blog.csdn.net/u010648555/article/details/79471034)
 
-[【第三篇】Spring-Session实现Session共享实现原理以及源码解析]()【更新中...请期待...】
+[【第三篇】Spring-Session实现Session共享实现原理以及源码解析](http://blog.csdn.net/u010648555/article/details/79491988)
+
+
+
+[本系列的源码下载地址：learn-spring-session-core](https://github.com/dufyun/learn-tech-collection/tree/master/learn-spring-session-core/)
 
 
 
