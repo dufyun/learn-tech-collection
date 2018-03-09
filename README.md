@@ -12,14 +12,18 @@
 详情使用请参考：<a href="http://blog.csdn.net/u010648555/article/details/56021211" target="_blank">SSM框架——Spring+SpringMVC+Mybatis的搭建教程</a>
 
 ----------
+
+
 <h4>3.redisson项目，使用Redisson搭建简单的分布式锁项目</h4>
 详情使用请参考：<a href="http://blog.csdn.net/u010648555/article/details/70139541" target="_blank">Redisson分布式锁的简单使用</a>
 
+----------
 
 <h4>4.springwebscoket项目，	使用Spring websocket实现搭建websocket，快速学习 。使用JDK版本1.6+</h4>
 详情使用请参考：<a href="http://blog.csdn.net/u010648555/article/details/77141170" target="_blank">基于Spring WebSocket 和STOMP实现简单的聊天功能</a>
 <a href="http://www.cnblogs.com/aflyun/p/7352830.html" target="_blank">基于Spring WebSocket 和STOMP实现简单的聊天功能</a>
 
+----------
 
 
 <h4>5.Spring-Session实现学习整理的教程</h4>
@@ -35,10 +39,12 @@
 
 [本系列的源码下载地址：learn-spring-session-core](https://github.com/dufyun/learn-tech-collection/tree/master/learn-spring-session-core/)
 
+----------
+
 
 
 ----------
-<font size='12' color='green'>持续更新.....</font>
+<font size='14' color='green'>持续更新.....</font>
 
 ----------
 
