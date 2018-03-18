@@ -68,3 +68,9 @@ SrpConnectionFactory
 
 
 
+### Spring boot 之 Spring-session
+此项目没有写博文，可以参考[SpringBoot应用之分布式会话](https://segmentfault.com/a/1190000004358410)
+1. 添加jar包或者使用[Spring Initializr](http://start.spring.io/)
+2. 添加redis的相关配置，地址、端口等
+3. 添加RedisHTTPSession配置
+4. 启动Redis，启动Application.java
