@@ -30,6 +30,7 @@ public class LoginServlet extends HttpServlet {
 
         request.getSession().setAttribute("testKey", "742981086@qq.com");
 
+        //这里设置Session的过期时间没有用，在application-session.xml配置过期时间
         request.getSession().setMaxInactiveInterval(10*1000);
 
         response.sendRedirect(request.getContextPath() + "/session");
