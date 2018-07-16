@@ -39,6 +39,15 @@
 
 [本系列的源码下载地址：learn-spring-session-core](https://github.com/dufyun/learn-tech-collection/tree/master/learn-spring-session-core/)
 
+
+
+
+<h4>6.learn-sitech-project公司最小化技术demo整理</h4>
+> 这个project是在熟悉公司项目的基础上进行简单的总结，将使用到技术改版成最小化demo，让自己更好的懂得项目的运行原理和机制！
+
+详情请看 learn-sitech-project 的readme说明！
+
+
 ----------
 
 
