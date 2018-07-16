@@ -11,7 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 
-import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 
 /**
  * demo演示类
@@ -32,11 +32,32 @@ public class DemoMessageResource {
     @POST
     @Path("/msg")
     public String unReadMsg(User user){
-        logger.info("logger ---> " + user.getName());
-
+        JSONObject json = new JSONObject();
         String name = user.getName();
+        logger.info("logger ---> " + name);
 
-        return JSON.toJSONString(name);
+        json.put("retMsg","success");
+        json.put("name",name);
+
+        return json.toJSONString();
+    }
+
+    /**
+     * accept 访问的时候在filter直接被放行
+     * @param user
+     * @return
+     */
+    @POST
+    @Path("/accept")
+    public String accept(User user){
+        String name = user.getName();
+        logger.info("logger ---> " + name);
+
+        JSONObject json = new JSONObject();
+        json.put("retMsg","success");
+        json.put("acceptName",name);
+
+        return json.toJSONString();
     }
 
 }

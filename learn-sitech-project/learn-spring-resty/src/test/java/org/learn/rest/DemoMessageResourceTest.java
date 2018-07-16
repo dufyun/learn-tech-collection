@@ -9,11 +9,8 @@ import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
-
 /**
- * 描述该类概要功能介绍
+ * 测试类
  *
  * @author:dufyun
  * @version:1.0.0
@@ -27,22 +24,27 @@ import com.alibaba.fastjson.JSONObject;
 public class DemoMessageResourceTest {
 
 
-//    @Test
-//    public void testtestMsg(){
-//
-//    }
-
     public static void main(String[] args) {
+        testMsg();
 
-        String url = "http://localhost:7000/service/msg";
-        String str = "{\"name\":\"dufy\"}";
-        JSONObject jsonObject = JSON.parseObject(str);
-        System.out.println(jsonObject.toJSONString());
-        String respose = HttpPostWithJson(url, str);
-        System.out.println(respose);
+        testAccept();
     }
 
-    public static String HttpPostWithJson(String url, String json) {
+    public static void testAccept(){
+        String url = "http://localhost:7000/service/accept";
+        String str = "{\"name\":\"dufy\"}";
+        String result = HttpPostWithJson(url, str,false);
+        System.out.println(result);
+    }
+
+    public static void testMsg(){
+        String url = "http://localhost:7000/service/msg";
+        String str = "{\"name\":\"dufy\"}";
+        String result = HttpPostWithJson(url, str,true);
+        System.out.println(result);
+    }
+
+    public static String HttpPostWithJson(String url, String json,boolean cookieFlag) {
         String returnValue = "这是默认返回值，接口调用失败";
         CloseableHttpClient httpClient = HttpClients.createDefault();
         ResponseHandler<String> responseHandler = new BasicResponseHandler();
@@ -57,7 +59,9 @@ public class DemoMessageResourceTest {
             StringEntity requestEntity = new StringEntity(json,"utf-8");
             requestEntity.setContentEncoding("UTF-8");
             httpPost.setHeader("Content-type", "application/json; charset=UTF-8");
-            httpPost.setHeader("Cookie","cmosSynAgent_token=e1394f7f90ba4f15fc4f6955dc855fd0");
+            if(cookieFlag){
+                httpPost.setHeader("Cookie","query-order-list=0049a8ee4c16e39b449ac59945129a05");
+            }
             httpPost.setEntity(requestEntity);
 
 

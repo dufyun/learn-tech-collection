@@ -25,7 +25,7 @@
 	<!-- AOP -->
 	<aop:aspectj-autoproxy proxy-target-class="true"/>
 	<!-- 启用@AspectJ 支持 -->
-	<!-- <bean class="org.springframework.aop.aspectj.annotation.AnnotationAwareAspectJAutoProxyCreator" />-->
+	 <bean class="org.springframework.aop.aspectj.annotation.AnnotationAwareAspectJAutoProxyCreator" />
 	<!-- AOP-->
 
 </beans>
