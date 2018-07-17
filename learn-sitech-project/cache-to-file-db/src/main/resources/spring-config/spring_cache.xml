@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+                        http://www.springframework.org/schema/context
+                        http://www.springframework.org/schema/context/spring-context-4.0.xsd
+                        http://www.springframework.org/schema/task
+                        http://www.springframework.org/schema/task/spring-task-3.1.xsd">
+
+    <!-- 用于配置Redis -->
+
+    <!-- 打开注解方式 -->
+    <context:annotation-config/>
+
+    <!-- 自动扫描 -->
+    <context:component-scan base-package="org.dufy" />
+
+    <!-- 引入redis.properties配置文件 -->
+    <bean id="cacheProperties" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:project.properties" />
+    </bean>
+
+    <!--集群的配置-->
+    <bean id="jedisCluster" class="redis.clients.jedis.JedisCluster" destroy-method="close" scope="singleton">
+        <constructor-arg index="0" >
+            <list>
+
+                <bean id="cluster0" class="redis.clients.jedis.HostAndPort">
+                    <constructor-arg name="host" value="${redis.cluster0.host}"/>
+                    <constructor-arg name="port" value="${redis.cluster0.port}"/>
+                </bean>
+                <bean id="cluster1" class="redis.clients.jedis.HostAndPort">
+                    <constructor-arg name="host" value="${redis.cluster1.host}"/>
+                    <constructor-arg name="port" value="${redis.cluster1.port}"/>
+                </bean>
+                <bean id="cluster2" class="redis.clients.jedis.HostAndPort">
+                    <constructor-arg name="host" value="${redis.cluster2.host}"/>
+                    <constructor-arg name="port" value="${redis.cluster2.port}"/>
+                </bean>
+                <bean id="cluster3" class="redis.clients.jedis.HostAndPort">
+                    <constructor-arg name="host" value="${redis.cluster3.host}"/>
+                    <constructor-arg name="port" value="${redis.cluster3.port}"/>
+                </bean>
+                <bean id="cluster4" class="redis.clients.jedis.HostAndPort">
+                    <constructor-arg name="host" value="${redis.cluster4.host}"/>
+                    <constructor-arg name="port" value="${redis.cluster4.port}"/>
+                </bean>
+                <bean id="cluster5" class="redis.clients.jedis.HostAndPort">
+                    <constructor-arg name="host" value="${redis.cluster5.host}"/>
+                    <constructor-arg name="port" value="${redis.cluster5.port}"/>
+                </bean>
+
+            </list>
+        </constructor-arg>
+        <constructor-arg index="1" type="int" value="30000"/><!-- 超时时间 -->
+        <constructor-arg index="2" type="int" value="5"/><!-- 重试次数 -->
+        <constructor-arg index="3"  ref="jedisPoolConfig"/><!-- 连接池配置 -->
+    </bean>
+
+    <!-- jedisPoolConfig配置  通用-->
+    <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+        <property name="maxTotal" value="${redis.pool.maxTotal}" />
+        <property name="maxIdle" value="${redis.pool.maxIdle}" />
+        <property name="timeBetweenEvictionRunsMillis" value="${redis.pool.timeBetweenEvictionRunsMillis}" />
+        <property name="minEvictableIdleTimeMillis" value="${redis.pool.minEvictableIdleTimeMillis}" />
+        <property name="testOnBorrow" value="${redis.pool.testOnBorrow}" />
+    </bean>
+
+    <!--jedisConnectionFactory 配置-->
+    <bean id="jedisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
+
+        <!--配置Redis连接池 ，可以不配置，使用默认就行！-->
+        <constructor-arg index="0" ref="jedisPoolConfig"/>
+    </bean>
+
+
+    <!-- 配置RedisTemplate -->
+    <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
+        <property name="connectionFactory" ref="jedisConnectionFactory" />
+        <property name="keySerializer">
+            <bean class="org.springframework.data.redis.serializer.StringRedisSerializer"></bean>
+        </property>
+        <property name="valueSerializer">
+            <bean class="org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer"></bean>
+        </property>
+    </bean>
+    <bean id="redisSerializer" class="org.springframework.data.redis.serializer.StringRedisSerializer"></bean>
+
+    <!-- 配置RedisCacheManager -->
+    <bean id="redisCacheManager" class="org.springframework.data.redis.cache.RedisCacheManager">
+        <constructor-arg name="redisOperations" ref="redisTemplate" />
+    </bean>
+
+    <bean id="redisClientTemplate" class="org.dufy.cache.RedisClientTemplate" />
+
+</beans>

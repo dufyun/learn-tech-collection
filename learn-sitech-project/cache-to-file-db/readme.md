@@ -25,14 +25,27 @@ User{id=3, userName='dufy', password='123456', age=25}
 User{id=4, userName='github', password='123456', age=10}
 
 ````
-
 3. 缓存相关的配置
+- （1）添加对应的jar ，jedis 、spring-data-redis等
+- （2）添加cache对应的配置文件，既spring-cache.xml
+- （3）添加`RedisClientTemplate` redis操作工具类
+- （4）进行测试，`org.dufy.cache.RedisClientTemplateTest`
+4. 设计缓存的入库缓存保存的key
+两种方式：
+- （1）使用String
+> key=user:id
+> value=json(user).toString
+- （2）使用Hash
+> key=user:id
+> key "name" "dufy"
+> key "age" 25
+
+注： 需要redis配置集群，可参考[Redis创建高可用集群教程【Windows环境】](https://blog.csdn.net/u010648555/article/details/79427608)
+
+5. 日志入库文件的扫描和转移
 
 
-4. 日志入库文件的扫描和转移
-
-
-5. 读取文件数据并进行入库操作
+6. 读取文件数据并进行入库操作
 
 
 

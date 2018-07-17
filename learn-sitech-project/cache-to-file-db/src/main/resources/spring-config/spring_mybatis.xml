@@ -10,20 +10,14 @@
                         http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
                         http://www.springframework.org/schema/context
                         http://www.springframework.org/schema/context/spring-context-4.0.xsd
-                        http://www.springframework.org/schema/aop
-                        http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
-                        http://www.springframework.org/schema/tx
-                        http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
-                        http://www.springframework.org/schema/mvc
-                        http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
                         http://www.springframework.org/schema/task
                         http://www.springframework.org/schema/task/spring-task-3.1.xsd">
 	<!-- 自动扫描 -->
-	<context:component-scan base-package="org.dufy.dao" />
+	<context:component-scan base-package="org.dufy" />
 
 	<!-- 引入配置文件 -->
 	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="location" value="classpath:db.properties"/>
+		<property name="location" value="classpath:project.properties"/>
 	</bean>
 
 	<!-- 数据源 -->

@@ -4,11 +4,9 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.dufy.BaseCaseTest;
 import org.dufy.model.User;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
@@ -23,9 +21,7 @@ import cn.hutool.log.LogFactory;
  */
 
 
-@RunWith(SpringJUnit4ClassRunner.class) //使用junit4进行测试
-@ContextConfiguration(locations = {"classpath:spring-config/spring_*.xml"}) //加载配置文件
-public class UserDaoTest {
+public class UserDaoTest extends BaseCaseTest {
 
 
     /**
