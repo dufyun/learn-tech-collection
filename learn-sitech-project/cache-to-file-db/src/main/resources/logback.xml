@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- For test environment -->
+<configuration scan="true" scanPeriod="30 seconds" packagingData="true">
+<!-- For prouction environment
+<configuration>
+ -->
+ 	<property name="dataPath" value="D:/spring-resty/data" />
+ 	<property name="logPath" value="D:/spring-resty/log" />
+
+	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+		</encoder>
+	</appender>
+
+
+
+	<appender name="userFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${dataPath}/user.log</file>
+		<rollingPolicy class="org.dufy.log.logback.DataLogRollingPolicy">
+			<fileNamePattern>${dataPath}/user.%d{yyyy-MM-dd-HH-mm-ss}.log</fileNamePattern>
+			<rollingInterval>10</rollingInterval>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%msg</pattern>
+		</encoder>
+	</appender>
+
+	<!-- 文件输出：file -->
+	<appender name="fileTransfer" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${logPath}/fileTransfer.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!--日志文件输出的文件名-->
+			<FileNamePattern>${log_home}/fileTransfer.%d{yyyyMMddHHmm}.log</FileNamePattern>
+		</rollingPolicy>
+		<encoder>
+			<!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+		</encoder>
+		<!--日志文件最大的大小-->
+		<!--
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+          <MaxFileSize>10MB</MaxFileSize>
+        </triggeringPolicy>
+        -->
+	</appender>
+
+	<!-- project default level -->
+	<logger name="user" level="INFO" additivity="false">
+	    <appender-ref ref="userFile" />
+		<appender-ref ref="fileTransfer" />
+	</logger>
+    
+	<root level="INFO">
+		<appender-ref ref="console" />
+	</root>
+
+</configuration>

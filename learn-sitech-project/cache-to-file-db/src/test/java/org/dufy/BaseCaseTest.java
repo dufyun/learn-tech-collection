@@ -13,6 +13,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * @update:[日期YYYY-MM-DD] [更改人姓名][变更描述]
  */
 @RunWith(SpringJUnit4ClassRunner.class) //使用junit4进行测试
-@ContextConfiguration(locations = {"classpath:spring-config/spring_*.xml"}) //加载配置文件
+@ContextConfiguration(locations = {"classpath:spring-config/*.xml"}) //加载配置文件
 public class BaseCaseTest {
 }

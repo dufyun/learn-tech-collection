@@ -60,7 +60,7 @@ debug:当此属性设置为true时，将打印出logback内部日志信息，实
     -->
     <logger name="logback"/>
     <!--logback.LogbackDemo：类的全路径 -->
-    <logger name="logback.LogbackDemo" level="warn" additivity="false">
+    <logger name="org.learn.rest.resource.DemoMessageResource" level="info" additivity="false">
         <appender-ref ref="console"/>
         <appender-ref ref="file"/>
     </logger>

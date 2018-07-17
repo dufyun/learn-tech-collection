@@ -12,5 +12,4 @@ package org.dufy.service;
  * @update:[日期YYYY-MM-DD] [更改人姓名][变更描述]
  */
 public interface UserService {
-    
 }

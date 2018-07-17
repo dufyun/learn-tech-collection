@@ -15,12 +15,6 @@
 
     <!-- 用于配置Redis -->
 
-    <!-- 打开注解方式 -->
-    <context:annotation-config/>
-
-    <!-- 自动扫描 -->
-    <context:component-scan base-package="org.dufy" />
-
     <!-- 引入redis.properties配置文件 -->
     <bean id="cacheProperties" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="location" value="classpath:project.properties" />

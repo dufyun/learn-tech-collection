@@ -1,0 +1,13 @@
+-
+ !!org.dufy.log.transfer.FileTransferConfiguration$Parameter
+ fileType: user
+ # 扫描的路径
+ scanPath: D:/spring-resty/data
+ # 扫描的时间间隔 10s
+ interval: 10
+ # 扫描文件的格式
+ filePattern: (\w+)\.(\d{4})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})\.log(?:\.pro)?(?:\.gz)?
+ backupPath: D:/spring-resty/backup/$2$3$4
+ compressType: gz
+ # 需要转移的位置，linux自行修改
+ transferUrl: sftp://127.0.0.1/E:/data/receive?user=dufy&password=123456

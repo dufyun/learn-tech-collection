@@ -1,5 +1,7 @@
 package org.dufy;
 
+import org.dufy.listener.DemoEvent;
+import org.dufy.listener.DemoPublisher;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 
@@ -17,9 +19,11 @@ public class AppMain {
 
     public static void main(String[] args) {
         GenericXmlApplicationContext context = new GenericXmlApplicationContext();
-        context.load("classpath*:spring-config/spring*.xml");
+        context.load("classpath*:spring-config/*.xml");
         setContext(context);
         context.refresh();
+
+
     }
 
     public static ApplicationContext getContext() {

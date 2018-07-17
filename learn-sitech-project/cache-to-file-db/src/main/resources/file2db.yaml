@@ -1,0 +1,11 @@
+!!org.dufy.file2db.StoreConfiguration
+scanPath: E:/data/receive
+scanFilePattern: (?:.+)-(\w+)\.(\d{4})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})\.log.gz
+backupPath: E:/data/receive/backup
+discardPath: E:/data/receive/discard
+retryTimes: 5
+stores:
+    user: !!org.dufy.file2db.Store
+        priority: 10
+        storeType: user
+        storeWorker: userStoreWorker
