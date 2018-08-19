@@ -48,6 +48,15 @@
 详情请看 learn-sitech-project 的readme说明！
 
 
+----------
+
+### 七、springboot-elasticsearch 整合
+详情使用请参考：
+
+[SpringBoot2.0.4整合elasticsearch为5.6.10](https://blog.csdn.net/u010648555/article/details/81840296)
+
+[ElasticSearch 入门](https://blog.csdn.net/u010648555/article/details/81841188)
+
 
 
 ----------
