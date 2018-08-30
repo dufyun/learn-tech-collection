@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-import org.dufy.exception.BaseServiceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,16 +33,39 @@ public class BaseMessageCode {
 
     private static final String tipMsg = "此code未配置提示消息！";
 
-
     /**
      * 定义默认的字符集编码
      */
     private static String CHARACTER_ENCODING = DEFAULT_CHARSET.toString();
 
 
-    protected static Map<String, String> errMsgs = null;
+    public static Map<String, String> errMsgs;
+
+    // 定义通过异常码 获取异常提示信息接口
 
 
+    //-------------------- 定义 公共异常消息码 ： 000000--009999 -----------------//
+
+    /**
+     * 成功
+     */
+    public static String SUCCESS = "000000";
+    /**
+     * 系统未知错误
+     */
+    public static String ERROR = "000001";
+
+
+    //-------------------- 定义 参数校验异常消息码： 010000--019999 -----------------//
+
+    // 自定义即可
+
+    //-------------------- 定义 常用异常消息码： 020000--029999 -----------------//
+
+    /**
+     * 空指针异常，异常提示信息：发生空指针异常，异常信息:{0}
+     */
+    public static String NULLPOINTEXCEPTION = "020000";
 
     static {
         errMsgs = initErrorMessage(MESSAGE_NAME);
@@ -71,7 +93,6 @@ public class BaseMessageCode {
     }
 
     // 定义加载属性资源的接口
-
     /**
      * 根据错误码获取错误消息
      * @param code
@@ -103,32 +124,6 @@ public class BaseMessageCode {
         return MessageFormat.format(msg,args);
     }
 
-    // 定义通过异常码 获取异常提示信息接口
-
-
-    //-------------------- 定义 公共异常消息码 ： 000000--009999 -----------------//
-
-    /**
-     * 成功
-     */
-    public static final String SUCCESS = "000000";
-    /**
-     * 系统未知错误
-     */
-    public static final String ERROR = "000001";
-
-
-    //-------------------- 定义 参数校验异常消息码： 010000--019999 -----------------//
-
-    // 自定义即可
-
-    //-------------------- 定义 常用异常消息码： 020000--029999 -----------------//
-
-    /**
-     * 空指针异常，异常提示信息：发生空指针异常，异常信息:{0}
-     */
-    public static final String NULLPOINTEXCEPTION = "200000";
-
 
 
 
@@ -149,25 +144,5 @@ public class BaseMessageCode {
         return errorCode;
     }
 
-    public static void main(String[] args) {
-        //验证message.properties
-        logger.info("errMsgs : " + errMsgs);
 
-        //验证获取成功消息码的内容
-        logger.info("000000 ---> errMsgs : " + getMsg(SUCCESS));
-
-        //验证出现空指针异常，动态输出错误内容
-
-        String strNull = null;
-        if(strNull == null){
-            logger.info("200000 ---> errMsgs : "
-                    + getMsg(getErrorCodeByException(new NullPointerException()),"strNull为null！"));
-        }
-        logger.info("java.version : " + System.getProperty("java.version"));
-
-        //正常业务中使用，结合自定义异常使用
-//       throw  new NullPointerException(AbstractMessageCode.SUCCESS + " === " +AbstractMessageCode.getMsg(AbstractMessageCode.SUCCESS));
-
-        throw new BaseServiceException(BaseMessageCode.SUCCESS , BaseMessageCode.getMsg(BaseMessageCode.SUCCESS));
-    }
 }

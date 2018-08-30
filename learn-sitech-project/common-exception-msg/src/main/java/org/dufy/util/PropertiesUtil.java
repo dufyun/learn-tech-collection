@@ -22,7 +22,7 @@ import org.slf4j.LoggerFactory;
  */
 public class PropertiesUtil {
 
-    private static Logger log = LoggerFactory.getLogger(PropertiesUtil.class);
+    private static Logger logger = LoggerFactory.getLogger(PropertiesUtil.class);
 
     /**
      * 使用流读取properties属性内容
@@ -41,7 +41,7 @@ public class PropertiesUtil {
      */
     public final static int BY_CLASS = 4;
     /**
-     * 在此类的类路径下获取properties 属性内容
+     * 在此类的类路径classpath下获取properties 属性内容
      */
     public final static int BY_CLASSLOADER = 5;
     /**
@@ -49,14 +49,15 @@ public class PropertiesUtil {
      */
     public final static int BY_SYSTEM_CLASSLOADER = 6;
 
+    /**
+     * 默认加载和读取 为 config.properties 中的内容
+     */
+    public static final String DEFAULT_CONFIG_PROPERTIES = "config";
+
+    public static  String CONF_PROPERTIES = DEFAULT_CONFIG_PROPERTIES;
 
 
-    public static final String CONF_PROPERTIES = "config";
-
-
-    public static final String OPEN_PROPERTIES = "conf";
-
-    public final static Properties loadProperties(final String name,final int type) throws IOException {
+    private final static Properties loadProperties(final String name,final int type) throws IOException {
         Properties p = new Properties();
 
         InputStream in = null;
@@ -103,6 +104,75 @@ public class PropertiesUtil {
         return p;
     }
 
+    /**
+     * 根据PropertiesUtil.BY_RESOURCE_BUNDLE方式从默认config.properties中去加载属性文件，
+     * 并根据key获取配置内容
+     * @param key
+     * @return
+     */
+    public static String getMessage(String key) {
+        Properties properties = new Properties();
+        try {
+            properties = PropertiesUtil.loadProperties(CONF_PROPERTIES,PropertiesUtil.BY_RESOURCE_BUNDLE);
+        } catch (IOException e) {
+            logger.error(CONF_PROPERTIES + ".properties not found");
+        }
+        if (properties.getProperty(key) == null) {
+            return null;
+        }
+        return properties.getProperty(key).toString();
+    }
+
+    /**
+     * 根据PropertiesUtil.BY_RESOURCE_BUNDLE方式从指定的ropertiesFileName.properties中去加载属性文件，
+     * 并根据key获取配置内容
+     * @param propertiesFileName
+     * @param key
+     * @return
+     */
+    public static String getMessage(String propertiesFileName,String key) {
+        if(propertiesFileName == null || propertiesFileName == ""){
+            throw new IllegalArgumentException("propertiesFileName is null!");
+        }
+
+        Properties properties = new Properties();
+        try {
+            properties = PropertiesUtil.loadProperties(propertiesFileName,
+                    PropertiesUtil.BY_RESOURCE_BUNDLE);
+        } catch (IOException e) {
+            logger.error(propertiesFileName + ".properties not found");
+        }
+        if (properties.getProperty(key) == null) {
+            return null;
+        }
+        return properties.getProperty(key).toString();
+    }
+
+    /**
+     * 根据指定的加载方式从指定的ropertiesFileName.properties中去加载属性文件，
+     * 并根据key获取配置内容
+     * @param propertiesFileName
+     * @param key
+     * @param byType 加载properties的方式
+     * @return
+     */
+    public static String getMessage(String propertiesFileName,String key,int byType) {
+        if(propertiesFileName == null || propertiesFileName == ""){
+            throw new IllegalArgumentException("propertiesFileName is null!");
+        }
+
+        Properties properties = new Properties();
+        try {
+            properties = PropertiesUtil.loadProperties(propertiesFileName,byType);
+        } catch (IOException e) {
+            logger.error(propertiesFileName + ".properties not found");
+        }
+        if (properties.getProperty(key) == null) {
+            return null;
+        }
+        return properties.getProperty(key).toString();
+    }
+
     /*
      * public static Properties loadProperties(ServletContext context, String
      * path) throws IOException { assert (context != null); InputStream in =
@@ -112,6 +182,8 @@ public class PropertiesUtil {
 
     public static class ResourceBundleAdapter extends Properties {
         private static final long serialVersionUID = 1L;
+
+        private ResourceBundle rb = null;
 
         @SuppressWarnings("unchecked")
         public ResourceBundleAdapter(ResourceBundle rb) {
@@ -123,8 +195,6 @@ public class PropertiesUtil {
                 this.put(o, rb.getObject((String) o));
             }
         }
-
-        private ResourceBundle rb = null;
 
         public ResourceBundle getBundle(String baseName) {
             return ResourceBundle.getBundle(baseName);
@@ -142,10 +212,9 @@ public class PropertiesUtil {
         public static String getMessage(String key) {
             Properties properties = new Properties();
             try {
-                properties = PropertiesUtil.loadProperties(OPEN_PROPERTIES,
+                properties = PropertiesUtil.loadProperties(CONF_PROPERTIES,
                         PropertiesUtil.BY_RESOURCE_BUNDLE);
             } catch (IOException e) {
-                // log.error(OPEN_PROPERTIES+".properties not found");
             }
             if (properties.getProperty(key) == null) {
                 return null;
@@ -178,34 +247,6 @@ public class PropertiesUtil {
             return ((PropertyResourceBundle) rb).handleGetObject(key);
         }
 
-    }
-
-    public static String getMessage(String propertiesFileName,String key) {
-        Properties properties = new Properties();
-        try {
-            properties = PropertiesUtil.loadProperties(propertiesFileName,
-                    PropertiesUtil.BY_RESOURCE_BUNDLE);
-        } catch (IOException e) {
-            log.error(CONF_PROPERTIES + ".properties not found");
-        }
-        if (properties.getProperty(key) == null) {
-            return null;
-        }
-        return properties.getProperty(key).toString();
-    }
-
-    public static String getMessage(String key) {
-        Properties properties = new Properties();
-        try {
-            properties = PropertiesUtil.loadProperties(CONF_PROPERTIES,
-                    PropertiesUtil.BY_RESOURCE_BUNDLE);
-        } catch (IOException e) {
-            log.error(CONF_PROPERTIES + ".properties not found");
-        }
-        if (properties.getProperty(key) == null) {
-            return null;
-        }
-        return properties.getProperty(key).toString();
     }
 
 }

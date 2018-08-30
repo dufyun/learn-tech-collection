@@ -35,4 +35,37 @@
 
     </dependencies>
 
+    <build>
+
+        <plugins>
+            <plugin>
+                <!-- MAVEN 编译使用的JDK版本 -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+        </plugins>
+
+        <!--需要配置此项，否则在包路径下定义的properties文件打包后会丢失-->
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                    <include>**/*.yaml</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
+
+    </build>
+
 </project>

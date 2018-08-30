@@ -173,20 +173,11 @@
                 <!-- MAVEN 编译使用的JDK版本 -->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version><!-- 可解决一个类报错打不了包的问题 -->
-                <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
-                </configuration>
             </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.12.4</version>
-                <configuration>
-                    <skipTests>true</skipTests>
-                </configuration>
             </plugin>
 
         </plugins>
