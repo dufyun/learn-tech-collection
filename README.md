@@ -3,7 +3,7 @@
 > 这个仓库存放学习过程中，自己搭建的一些技术Demo示例
 
 ### 一、dufyun_ValidateCode 项目，使用SpringMvc实现简单的验证码功能
-	
+
 详情使用请参考：<a href="http://blog.csdn.net/u010648555/article/details/52261050" target="_blank">Spring mvc简单框架实现的验证码</a>
 
 ----------
@@ -39,14 +39,12 @@
 
 [本系列的源码下载地址：learn-spring-session-core](https://github.com/dufyun/learn-tech-collection/tree/master/learn-spring-session-core/)
 
-
 ----------
 
 ### 六、learn-sitech-project公司最小化技术demo整理
 > 这个project是在熟悉公司项目的基础上进行简单的总结，将使用到技术改版成最小化demo，让自己更好的懂得项目的运行原理和机制！
 
 详情请看 learn-sitech-project 的readme说明！
-
 
 ----------
 
@@ -66,11 +64,17 @@
 ----------
 <font size='14' color='green'>持续更新.....</font>
 
+
+
 ----------
 
+<br/>
 
-<font size=4 color=blue>欢迎访问我的csdn博客，我们一同成长！</font>
+**不管做什么，只要坚持下去就会看到不一样！在路上，不卑不亢!**
 
-"<font size=5>**不管做什么，只要坚持下去就会看到不一样！在路上，不卑不亢!**</font>"
+ <font size=4 color=red> 博客首页：</font>[ https://aflyun.blog.csdn.net/](https://aflyun.blog.csdn.net/)
 
-<font size=4 color=red> 博客首页</font>：<a href="http://blog.csdn.net/u010648555" target="_blank">http://blog.csdn.net/u010648555</a>
+**愿你我在人生的路上能都变成最好的自己，能够成为一个独挡一面的人**
+![](http://dufyun.gitee.io/images_bed/images/life/qrcode_javaCoder.png)
+
+&copy; 每天都在变得更好的阿飞云
