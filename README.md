@@ -75,6 +75,6 @@
  <font size=4 color=red> 博客首页：</font>[ https://aflyun.blog.csdn.net/](https://aflyun.blog.csdn.net/)
 
 **愿你我在人生的路上能都变成最好的自己，能够成为一个独挡一面的人**
-![](http://dufyun.gitee.io/images_bed/images/life/qrcode_javaCoder.png)
+![aboutme](https://github.com/dufyun/learn-tech-collection/blob/master/images/aboutme.png)
 
 &copy; 每天都在变得更好的阿飞云
