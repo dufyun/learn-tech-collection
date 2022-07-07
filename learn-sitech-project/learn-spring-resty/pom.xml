@@ -17,7 +17,7 @@
     <description>学习使用Spring Resty</description>
 
     <properties>
-        <spring.version>3.2.2.RELEASE</spring.version>
+        <spring.version>3.2.5.RELEASE</spring.version>
         <resteasy.version>3.0.6.Final</resteasy.version>
         <jackson.version>2.2.1</jackson.version>
 
